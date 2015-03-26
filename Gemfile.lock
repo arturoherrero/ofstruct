@@ -69,8 +69,8 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  benchmark-ips
-  guard-rspec
+  benchmark-ips (~> 2.1)
+  guard-rspec (~> 4.5)
   ofstruct!
-  rake
-  rspec
+  rake (~> 10.4)
+  rspec (~> 3.2)
