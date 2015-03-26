@@ -1,5 +1,8 @@
 # OpenFastStruct
 
+[![Code Climate](https://codeclimate.com/github/arturoherrero/ofstruct/badges/gpa.svg)](https://codeclimate.com/github/arturoherrero/ofstruct)
+[![Build Status](https://travis-ci.org/arturoherrero/ofstruct.svg)](https://travis-ci.org/arturoherrero/ofstruct)
+
 OpenStruct allows the creation of data objects with arbitrary attributes.
 
 **OpenFastStruct** is a data structure, similar to an OpenStruct, that allows the
