@@ -10,6 +10,13 @@ definition of arbitrary attributes with their accompanying values. It benchmarks
 ~3x slower than a Hash, but it's ~4x faster than OpenStruct.
 
 
+## Installation
+
+Install the gem:
+
+    $ gem install ofstruct
+
+
 ## Examples
 
 ### Basic usage
