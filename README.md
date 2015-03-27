@@ -5,9 +5,15 @@
 
 OpenStruct allows the creation of data objects with arbitrary attributes.
 
-**OpenFastStruct** is a data structure, similar to an OpenStruct, that allows the
+**OpenFastStruct** is a data structure, similar* to an OpenStruct, that allows the
 definition of arbitrary attributes with their accompanying values. It benchmarks
-~3x slower than a Hash, but it's ~4x faster than OpenStruct.
+~3x slower than a Hash, but **it's ~4x faster than OpenStruct**.
+
+*An OpenFastStruct is not exactly like an OpenStruct, these are the main
+differences between them:
+- OpenFastStruct doesn't allow hash access like `person[:name]`.
+- OpenFastStruct doesn't provide marshalling.
+- OpenFastStruct allows infinite chaining of attributes <sup>[example](#black-hole-object)</sup>.
 
 
 ## Installation
@@ -15,6 +21,10 @@ definition of arbitrary attributes with their accompanying values. It benchmarks
 Install the gem:
 
     $ gem install ofstruct
+
+Use the gem in a project managed with Bundler adding it into the Gemfile:
+
+    gem "ofstruct"
 
 
 ## Examples
@@ -82,7 +92,7 @@ puts person.address.number  # -> 4
 Probably you heard that you should never, ever use OpenStruct because the
 performance penalty is prohibitive. You can use OpenFastStruct instead!
 
-### Comparation between Hash, OpenFastStruct and OpenStruct:
+#### Comparation between Hash, OpenFastStruct and OpenStruct:
 
 ```
 $ ruby benchmark/hash_ofstruct_ostruct.rb
@@ -101,7 +111,7 @@ Comparison:
           OpenStruct:    45601.6 i/s - 10.69x slower
 ```
 
-### Comparation between RSpec Stubs, OpenFastStruct and OpenStruct:
+#### Comparation between RSpec Stubs, OpenFastStruct and OpenStruct:
 
 ```
 $ ruby benchmark/double_ofstruct_ostruct.rb
