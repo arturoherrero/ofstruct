@@ -88,6 +88,20 @@ RSpec.describe OpenFastStruct do
           it "converts to a hash" do
             expect(ofstruct.to_h).to eq(args)
           end
+
+          it "converts to a hash with chained attributes" do
+            ofstruct.address.street = "Sunset Boulevar"
+            ofstruct.address.number = 4
+            expect(ofstruct.to_h).to eq(
+              {
+                :name   => "John",
+                :address => {
+                  :street => "Sunset Boulevar",
+                  :number => 4,
+                }
+              }
+            )
+          end
         end
 
         describe "#inspect" do

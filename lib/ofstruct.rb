@@ -17,7 +17,9 @@ class OpenFastStruct
   end
 
   def to_h
-    @members
+    @members.inject({}) do |result, (k, v)|
+      result.tap { |result| result[k] = v.is_a?(self.class) ? v.to_h : v }
+    end
   end
 
   def inspect
