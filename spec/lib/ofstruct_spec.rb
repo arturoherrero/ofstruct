@@ -14,15 +14,11 @@ RSpec.describe OpenFastStruct do
 
   it "works recursive accessor" do
     ofstruct.user.name = "John"
-    ofstruct.name = "OpenFastStruct"
-    expect(ofstruct.user).to be_a(described_class)
     expect(ofstruct.user.name).to eq("John")
-    expect(ofstruct.name).to eq("OpenFastStruct")
   end
 
   it "works with unexisting values" do
     expect(ofstruct.name).to be_a(described_class)
-    expect(ofstruct.nam).to be_a(described_class)
   end
 
   context "instantiated from arguments" do
@@ -59,7 +55,7 @@ RSpec.describe OpenFastStruct do
           end
         end
 
-        describe "#each_field" do
+        describe "#each_pair" do
           it "yields all keys with the values" do
             expect(ofstruct.each_pair.to_a).to eq([[:name, "John"]])
           end
