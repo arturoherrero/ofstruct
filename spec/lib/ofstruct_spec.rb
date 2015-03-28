@@ -21,6 +21,13 @@ RSpec.describe OpenFastStruct do
     expect(ofstruct.name).to be_a(described_class)
   end
 
+  it "equals to other with same attributes" do
+    ofstruct.user.name = "John"
+    other_ofstruct = described_class.new
+    other_ofstruct.user.name = "John"
+    expect(ofstruct).to eq(other_ofstruct)
+  end
+
   context "instantiated from arguments" do
     subject(:ofstruct) { described_class.new(args) }
 
