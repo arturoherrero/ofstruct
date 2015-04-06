@@ -1,11 +1,11 @@
 class OpenFastStruct
   def initialize(args = {})
     @members = {}
-    assign(args)
+    update(args)
   end
 
   def delete_field(key)
-    @members[key.to_sym] = self.class.new
+    assign(key, self.class.new)
   end
 
   def each_pair
@@ -13,17 +13,16 @@ class OpenFastStruct
   end
 
   def update(args)
-    assign(args)
+    ensure_hash!(args)
+    args.each { |k,v| assign(k, v) }
   end
 
   def to_h
-    @members.inject({}) do |result, (k, v)|
-      result.tap { |result| result[k] = v.is_a?(self.class) ? v.to_h : v }
-    end
+    @members.merge(@members) { |_, v| v.is_a?(self.class) ? v.to_h : v }
   end
 
   def inspect
-    @members.each_with_object("#<#{self.class}") { |(k,v), output| output << " :#{k}=#{v.inspect}" } << ">"
+    "#<#{self.class}" + @members.map { |k, v| " :#{k}=#{v.inspect}" }.join + ">"
   end
   alias :to_s :inspect
 
@@ -32,28 +31,26 @@ class OpenFastStruct
   end
 
   def ==(other)
-    return false unless other.is_a?(self.class)
-    self.to_h == other.to_h
+    other.is_a?(self.class) && self.to_h == other.to_h
   end
 
   private
 
+  def ensure_hash!(args)
+    raise ArgumentError unless args.is_a?(Hash)
+  end
+
   def method_missing(name, *args)
     @members.fetch(name) do
       if name[-1] == "="
-        @members[name[0..-2].to_sym] = args.first
+        assign(name[0..-2], args.first)
       else
-        @members[name.to_sym] = self.class.new
+        delete_field(name)
       end
     end
   end
 
-  def assign(args)
-    ensure_hash(args)
-    args.each { |k,v| @members[k.to_sym] = v }
-  end
-
-  def ensure_hash(args)
-    raise ArgumentError unless args.is_a?(Hash)
+  def assign(key, value)
+    @members[key.to_sym] = value
   end
 end
