@@ -14,7 +14,7 @@ class OpenFastStruct
 
   def update(args)
     ensure_hash!(args)
-    args.each { |k,v| assign(k, v) }
+    args.each { |k, v| assign(k, v) }
   end
 
   def to_h
