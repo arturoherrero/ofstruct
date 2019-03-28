@@ -6,7 +6,7 @@ PATH
 GEM
   remote: https://rubygems.org/
   specs:
-    benchmark-ips (2.1.1)
+    benchmark-ips (2.7.2)
     celluloid (0.16.0)
       timers (~> 4.0.0)
     coderay (1.1.0)
