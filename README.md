@@ -1,7 +1,7 @@
 # OpenFastStruct
 
 [![Code Climate](https://codeclimate.com/github/arturoherrero/ofstruct/badges/gpa.svg)](https://codeclimate.com/github/arturoherrero/ofstruct)
-[![Build Status](https://travis-ci.org/arturoherrero/ofstruct.svg)](https://travis-ci.org/arturoherrero/ofstruct)
+[![Build Status](https://github.com/arturoherrero/ofstruct/workflows/build/badge.svg?branch=master)](https://github.com/arturoherrero/ofstruct/actions)
 
 OpenStruct allows the creation of data objects with arbitrary attributes.
 
