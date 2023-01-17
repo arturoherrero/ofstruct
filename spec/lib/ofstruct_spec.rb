@@ -31,7 +31,7 @@ RSpec.describe OpenFastStruct do
   context "instantiated from arguments" do
     subject(:ofstruct) { described_class.new(args) }
 
-    context "without Hash" do
+    context "without hash" do
       let(:args) { double }
 
       it "raises an exception" do
@@ -39,11 +39,11 @@ RSpec.describe OpenFastStruct do
       end
     end
 
-    context "with Hash" do
-      let(:symbol_args) { Hash[:name  => "John"] }
-      let(:string_args) { Hash["name" => "John"] }
+    context "with hash" do
+      let(:symbol_args) { { :name => "John" } }
+      let(:string_args) { { "name" => "John" } }
 
-      context "with Symbol keys" do
+      context "with symbol keys" do
         let(:args) { symbol_args }
 
         it "works with reader" do
@@ -84,7 +84,7 @@ RSpec.describe OpenFastStruct do
             expect(ofstruct.surname).to eq("Smith")
           end
 
-          context "without Hash" do
+          context "without hash" do
             it "raises an exception" do
               expect { ofstruct.update(double) }.to raise_error(ArgumentError)
             end
@@ -118,7 +118,7 @@ RSpec.describe OpenFastStruct do
         end
       end
 
-      context "with String keys" do
+      context "with string keys" do
         let(:args) { string_args }
 
         it "works with reader" do
