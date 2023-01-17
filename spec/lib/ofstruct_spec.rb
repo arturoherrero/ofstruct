@@ -42,6 +42,15 @@ RSpec.describe OpenFastStruct do
     context "with hash" do
       let(:symbol_args) { { :name => "John" } }
       let(:string_args) { { "name" => "John" } }
+      let(:nested_args) { { person: { name: "John" } } }
+
+      context "with a nested hash" do
+        let(:args) { nested_args }
+
+        it "works with reader" do
+          expect(ofstruct.person.name).to eq("John")
+        end
+      end
 
       context "with symbol keys" do
         let(:args) { symbol_args }
