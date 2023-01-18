@@ -1,7 +1,7 @@
 Gem::Specification.new do |spec|
   spec.platform = Gem::Platform::RUBY
   spec.name        = "ofstruct"
-  spec.version     = "0.2.1"
+  spec.version     = "0.3.0"
   spec.summary     = "OpenFastStruct"
   spec.description = "OpenFastStruct is a data structure, similar to an OpenStruct but faster."
   spec.author      = "Arturo Herrero"
@@ -15,8 +15,8 @@ Gem::Specification.new do |spec|
   spec.test_files    = Dir["spec/**/*"]
   spec.require_paths = ["lib"]
 
-  spec.add_development_dependency "benchmark-ips", "~> 2.1"
-  spec.add_development_dependency "guard-rspec", "~> 4.5"
+  spec.add_development_dependency "benchmark-ips", "~> 2.10"
+  spec.add_development_dependency "guard-rspec", "~> 4.7"
   spec.add_development_dependency "rake", "~> 13.0"
-  spec.add_development_dependency "rspec", "~> 3.2"
+  spec.add_development_dependency "rspec", "~> 3.12"
 end

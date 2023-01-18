@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    ofstruct (0.2.1)
+    ofstruct (0.3.0)
 
 GEM
   remote: https://rubygems.org/
@@ -61,11 +61,11 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  benchmark-ips (~> 2.1)
-  guard-rspec (~> 4.5)
+  benchmark-ips (~> 2.10)
+  guard-rspec (~> 4.7)
   ofstruct!
   rake (~> 13.0)
-  rspec (~> 3.2)
+  rspec (~> 3.12)
 
 BUNDLED WITH
    2.4.4
