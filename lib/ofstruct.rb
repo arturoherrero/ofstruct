@@ -51,6 +51,10 @@ class OpenFastStruct
   end
 
   def assign(key, value)
-    @members[key.to_sym] = value
+    if value.is_a?(Hash)
+      @members[key.to_sym] = self.class.new(value)
+    else
+      @members[key.to_sym] = value
+    end
   end
 end
