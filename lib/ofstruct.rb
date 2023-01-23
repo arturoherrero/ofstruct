@@ -50,11 +50,18 @@ class OpenFastStruct
     end
   end
 
-  def assign(key, value)
-    if value.is_a?(Hash)
-      @members[key.to_sym] = self.class.new(value)
+  def convert_value(value)
+    case value
+    when Hash
+      self.class.new(value)
+    when Array
+      value.map { |element| convert_value(element) }
     else
-      @members[key.to_sym] = value
+      value
     end
+  end
+
+  def assign(key, value)
+    @members[key.to_sym] = convert_value(value)
   end
 end
