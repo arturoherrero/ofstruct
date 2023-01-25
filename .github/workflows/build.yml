@@ -13,3 +13,5 @@ jobs:
       - run: bundle install
 
       - run: bundle exec rspec
+
+      - run: bundle exec rubocop
