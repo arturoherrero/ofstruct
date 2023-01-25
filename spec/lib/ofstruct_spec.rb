@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "ofstruct"
 
 RSpec.describe OpenFastStruct do
@@ -40,10 +42,10 @@ RSpec.describe OpenFastStruct do
     end
 
     context "with hash" do
-      let(:symbol_args) { { :name => "John" } }
+      let(:symbol_args) { { name: "John" } }
       let(:string_args) { { "name" => "John" } }
       let(:nested_args) { { person: { name: "John" } } }
-      let(:array_args)  { { list: [{ name: "John" }, { name: 'Doe' }] } }
+      let(:array_args)  { { list: [{ name: "John" }, { name: "Doe" }] } }
 
       context "with a nested hash" do
         let(:args) { nested_args }
@@ -57,7 +59,7 @@ RSpec.describe OpenFastStruct do
         let(:args) { array_args }
 
         it "works with reader" do
-          expect(ofstruct.list.map(&:name)).to include('John', 'Doe')
+          expect(ofstruct.list.map(&:name)).to include("John", "Doe")
         end
       end
 
@@ -92,12 +94,12 @@ RSpec.describe OpenFastStruct do
 
         describe "#update" do
           it "overwrite previous keys" do
-            ofstruct.update(:name => "John Smith")
+            ofstruct.update(name: "John Smith")
             expect(ofstruct.name).to eq("John Smith")
           end
 
           it "adds new keys" do
-            ofstruct.update(:surname => "Smith")
+            ofstruct.update(surname: "Smith")
             expect(ofstruct.name).to eq("John")
             expect(ofstruct.surname).to eq("Smith")
           end
@@ -119,11 +121,11 @@ RSpec.describe OpenFastStruct do
             ofstruct.address.number = 4
             expect(ofstruct.to_h).to eq(
               {
-                :name   => "John",
-                :address => {
-                  :street => "Sunset Boulevar",
-                  :number => 4,
-                }
+                name: "John",
+                address: {
+                  street: "Sunset Boulevar",
+                  number: 4,
+                },
               }
             )
           end

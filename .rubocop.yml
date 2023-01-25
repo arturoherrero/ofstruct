@@ -1,3 +1,21 @@
+AllCops:
+  TargetRubyVersion: 3.0
+  NewCops: enable
+
+Metrics/BlockLength:
+  Exclude:
+    - "spec/lib/ofstruct_spec.rb"
+
+Style/Documentation:
+  Enabled: false
+
+Style/MissingRespondToMissing:
+  Enabled: false
+
+Style/OpenStructUse:
+  Exclude:
+    - "benchmark/*.rb"
+
 Style/StringLiterals:
   EnforcedStyle: double_quotes
 

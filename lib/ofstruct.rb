@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class OpenFastStruct
   def initialize(args = {})
     @members = {}
@@ -22,16 +24,16 @@ class OpenFastStruct
   end
 
   def inspect
-    "#<#{self.class}" + @members.map { |k, v| " :#{k}=#{v.inspect}" }.join + ">"
+    "#<#{self.class}#{@members.map { |k, v| " :#{k}=#{v.inspect}" }.join}>"
   end
-  alias :to_s :inspect
+  alias to_s inspect
 
   def to_ary
     nil
   end
 
   def ==(other)
-    other.is_a?(self.class) && self.to_h == other.to_h
+    other.is_a?(self.class) && to_h == other.to_h
   end
 
   private
