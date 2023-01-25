@@ -50,6 +50,10 @@ class OpenFastStruct
     end
   end
 
+  def assign(key, value)
+    @members[key.to_sym] = process(value)
+  end
+
   def process(data)
     case data
     when Hash
@@ -59,9 +63,5 @@ class OpenFastStruct
     else
       data
     end
-  end
-
-  def assign(key, value)
-    @members[key.to_sym] = process(value)
   end
 end
