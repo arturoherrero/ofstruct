@@ -50,18 +50,18 @@ class OpenFastStruct
     end
   end
 
-  def convert_value(value)
-    case value
+  def process(data)
+    case data
     when Hash
-      self.class.new(value)
+      self.class.new(data)
     when Array
-      value.map { |element| convert_value(element) }
+      data.map { |element| process(element) }
     else
-      value
+      data
     end
   end
 
   def assign(key, value)
-    @members[key.to_sym] = convert_value(value)
+    @members[key.to_sym] = process(value)
   end
 end
