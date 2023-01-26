@@ -3,7 +3,7 @@
 Gem::Specification.new do |spec|
   spec.platform = Gem::Platform::RUBY
   spec.name        = "ofstruct"
-  spec.version     = "0.3.1"
+  spec.version     = "0.3.2"
   spec.summary     = "OpenFastStruct"
   spec.description = "OpenFastStruct is a data structure, similar to an OpenStruct but faster."
   spec.author      = "Arturo Herrero"
