@@ -1,10 +1,19 @@
+require:
+  - rubocop-rake
+  - rubocop-rspec
+
 AllCops:
   TargetRubyVersion: 3.0
   NewCops: enable
 
-Metrics/BlockLength:
-  Exclude:
-    - "spec/lib/ofstruct_spec.rb"
+RSpec/ExampleLength:
+  Enabled: false
+
+RSpec/FilePath:
+  Enabled: false
+
+RSpec/NestedGroups:
+  Enabled: false
 
 Style/Documentation:
   Enabled: false

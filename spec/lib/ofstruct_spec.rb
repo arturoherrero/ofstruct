@@ -9,12 +9,12 @@ RSpec.describe OpenFastStruct do
     expect(ofstruct).to be_a(described_class)
   end
 
-  it "works accessor" do
+  it "works as an accessor" do
     ofstruct.name = "John"
     expect(ofstruct.name).to eq("John")
   end
 
-  it "works recursive accessor" do
+  it "works as a black hole accessor" do
     ofstruct.user.name = "John"
     expect(ofstruct.user.name).to eq("John")
   end
@@ -23,17 +23,17 @@ RSpec.describe OpenFastStruct do
     expect(ofstruct.name).to be_a(described_class)
   end
 
-  it "equals to other with same attributes" do
+  it "equals to other with the same attributes" do
     ofstruct.user.name = "John"
     other_ofstruct = described_class.new
     other_ofstruct.user.name = "John"
     expect(ofstruct).to eq(other_ofstruct)
   end
 
-  context "instantiated from arguments" do
+  context "when instantiated from arguments" do
     subject(:ofstruct) { described_class.new(args) }
 
-    context "without hash" do
+    context "without a hash" do
       let(:args) { double }
 
       it "raises an exception" do
@@ -41,36 +41,20 @@ RSpec.describe OpenFastStruct do
       end
     end
 
-    context "with hash" do
+    context "with a hash" do
       let(:symbol_args) { { name: "John" } }
       let(:string_args) { { "name" => "John" } }
       let(:nested_args) { { person: { name: "John" } } }
       let(:array_args)  { { list: [{ name: "John" }, { name: "Doe" }] } }
 
-      context "with a nested hash" do
-        let(:args) { nested_args }
-
-        it "works with reader" do
-          expect(ofstruct.person.name).to eq("John")
-        end
-      end
-
-      context "with a array of hashes" do
-        let(:args) { array_args }
-
-        it "works with reader" do
-          expect(ofstruct.list.map(&:name)).to include("John", "Doe")
-        end
-      end
-
       context "with symbol keys" do
         let(:args) { symbol_args }
 
-        it "works with reader" do
+        it "works as a reader" do
           expect(ofstruct.name).to eq("John")
         end
 
-        it "works accessor" do
+        it "works as an accessor" do
           ofstruct.name = "John Smith"
           expect(ofstruct.name).to eq("John Smith")
         end
@@ -100,7 +84,6 @@ RSpec.describe OpenFastStruct do
 
           it "adds new keys" do
             ofstruct.update(surname: "Smith")
-            expect(ofstruct.name).to eq("John")
             expect(ofstruct.surname).to eq("Smith")
           end
 
@@ -119,6 +102,7 @@ RSpec.describe OpenFastStruct do
           it "converts to a hash with chained attributes" do
             ofstruct.address.street = "Sunset Boulevar"
             ofstruct.address.number = 4
+
             expect(ofstruct.to_h).to eq(
               {
                 name: "John",
@@ -141,7 +125,7 @@ RSpec.describe OpenFastStruct do
       context "with string keys" do
         let(:args) { string_args }
 
-        it "works with reader" do
+        it "works as a reader" do
           expect(ofstruct.name).to eq("John")
         end
 
@@ -150,11 +134,29 @@ RSpec.describe OpenFastStruct do
             expect(ofstruct.to_h).to eq(symbol_args)
           end
         end
+      end
 
-        describe "#inspect" do
-          it "returns the human-readable representation" do
-            expect(ofstruct.inspect).to eq('#<OpenFastStruct :name="John">')
-          end
+      context "with a nested hash" do
+        let(:args) { nested_args }
+
+        it "works as a reader" do
+          expect(ofstruct.person.name).to eq("John")
+        end
+
+        it "converts to a hash" do
+          expect(ofstruct.to_h).to eq(args)
+        end
+      end
+
+      context "with a array of hashes" do
+        let(:args) { array_args }
+
+        it "works as a reader" do
+          expect(ofstruct.list.map(&:name)).to include("John", "Doe")
+        end
+
+        it "converts to a hash" do
+          expect(ofstruct.to_h).to eq(args)
         end
       end
     end

@@ -16,15 +16,24 @@ class OpenFastStruct
 
   def update(args)
     ensure_hash!(args)
-    args.each { |k, v| assign(k, v) }
+    args.each { |key, value| assign(key, value) }
   end
 
   def to_h
-    @members.merge(@members) { |_, v| v.is_a?(self.class) ? v.to_h : v }
+    @members.merge(@members) do |_, value|
+      case value
+      when Array
+        value.map(&:to_h)
+      when self.class
+        value.to_h
+      else
+        value
+      end
+    end
   end
 
   def inspect
-    "#<#{self.class}#{@members.map { |k, v| " :#{k}=#{v.inspect}" }.join}>"
+    "#<#{self.class}#{@members.map { |key, value| " :#{key}=#{value.inspect}" }.join}>"
   end
   alias to_s inspect
 
