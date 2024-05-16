@@ -48,7 +48,8 @@ GEM
     rb-inotify (0.10.1)
       ffi (~> 1.0)
     regexp_parser (2.6.2)
-    rexml (3.2.5)
+    rexml (3.2.8)
+      strscan (>= 3.0.9)
     rspec (3.12.0)
       rspec-core (~> 3.12.0)
       rspec-expectations (~> 3.12.0)
@@ -83,6 +84,7 @@ GEM
       rubocop-capybara (~> 2.17)
     ruby-progressbar (1.11.0)
     shellany (0.0.1)
+    strscan (3.1.0)
     thor (1.2.1)
     unicode-display_width (2.4.2)
 
