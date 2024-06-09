@@ -15,6 +15,9 @@ RSpec/FilePath:
 RSpec/NestedGroups:
   Enabled: false
 
+RSpec/SpecFilePathFormat:
+  Enabled: false
+
 Style/Documentation:
   Enabled: false
 
