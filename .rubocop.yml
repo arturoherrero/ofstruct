@@ -9,9 +9,6 @@ AllCops:
 RSpec/ExampleLength:
   Enabled: false
 
-RSpec/FilePath:
-  Enabled: false
-
 RSpec/NestedGroups:
   Enabled: false
 
